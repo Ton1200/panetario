@@ -10,6 +10,7 @@ import { CatalogHeader } from '@/features/catalog/ui/CatalogHeader'
 import { SearchBar } from '@/features/catalog/ui/SearchBar'
 import { CategoryTabs } from '@/features/catalog/ui/CategoryTabs'
 import { ProductList } from '@/features/catalog/ui/ProductList'
+import { Footer } from '@/components/layout/Footer/Footer'
 
 export function CatalogPage() {
   const [query, setQuery] = useState('')
@@ -33,10 +34,8 @@ export function CatalogPage() {
 
         <ProductList items={filtered} emptyText="No encontramos productos para tu búsqueda" />
 
-        <footer className={styles.footer}>
-          <span className={styles.footerDot} />
-          Precios sujetos a disponibilidad
-        </footer>
+        <Footer />
+
       </Container>
     </main>
   )
