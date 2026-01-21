@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import './globals.scss'
-import { Footer } from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: 'El Panetario | Catálogo',

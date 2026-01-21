@@ -1,3 +1,5 @@
+import type { Currency } from '@/types'
+
 export type CatalogCategory =
   | 'Panadería & Bollería'
   | 'Panificados salados'
@@ -10,7 +12,7 @@ export type CatalogItem = {
   name: string
   category: CatalogCategory
   price: number
-  currency: 'ARS'
+  currency: Currency
   unit?: string
   imageUrl?: string
   active: boolean

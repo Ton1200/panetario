@@ -62,13 +62,11 @@
   border-radius: 9999px;
   border: 1px solid $border-soft;
   background: rgba(17, 19, 24, 0.45);
-}
-
-.pillAccent {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.92);
-  padding: 6px 10px;
-  border-radius: 9999px;
-  border: 1px solid rgba(168, 75, 60, 0.35);
-  background: rgba(168, 75, 60, 0.18);
+  
+  &Accent {
+    @extend .pill;
+    color: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(168, 75, 60, 0.35);
+    background: rgba(168, 75, 60, 0.18);
+  }
 }

@@ -27,22 +27,22 @@
   /* WebKit */
   &::-webkit-scrollbar {
     height: 8px;
-  }
 
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
+    &-track {
+      background: transparent;
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background: rgba(184, 158, 107, 0.45);
-    border-radius: 9999px;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-  }
+    &-thumb {
+      background: rgba(184, 158, 107, 0.45);
+      border-radius: 9999px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
 
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba(184, 158, 107, 0.65);
-    background-clip: padding-box;
+      &:hover {
+        background: rgba(184, 158, 107, 0.65);
+        background-clip: padding-box;
+      }
+    }
   }
 }
 
@@ -55,15 +55,22 @@
   background: rgba(20, 24, 33, 0.6);
   color: $text-muted;
   white-space: nowrap;
-}
+  cursor: pointer;
+  transition: all 0.2s ease;
 
-.tabActive {
-  border-radius: 9999px;
-  padding: 8px 12px;
-  font-size: 12px;
-  font-weight: 800;
-  border: 1px solid rgba(184, 158, 107, 0.38);
-  background: rgba(184, 158, 107, 0.18);
-  color: rgba(255, 255, 255, 0.92);
-  white-space: nowrap;
+  &:hover {
+    background: rgba(20, 24, 33, 0.8);
+  }
+
+  &Active {
+    @extend .tab;
+    font-weight: 800;
+    border: 1px solid rgba(184, 158, 107, 0.38);
+    background: rgba(184, 158, 107, 0.18);
+    color: rgba(255, 255, 255, 0.92);
+
+    &:hover {
+      background: rgba(184, 158, 107, 0.22);
+    }
+  }
 }

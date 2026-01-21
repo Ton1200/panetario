@@ -2,15 +2,20 @@
 
 import { useMemo, useState } from 'react'
 import styles from './CatalogPage.module.scss'
-import { Container } from '@/components/ui/Container'
-import { CATALOG, CATEGORIES } from '@/features/catalog/data/catalog.mock'
-import type { CatalogCategory } from '@/features/catalog/model/catalog.types'
-import { filterByCategoryAndQuery, onlyActive, sortByOrder } from '@/features/catalog/model/catalog.selectors'
-import { CatalogHeader } from '@/features/catalog/ui/CatalogHeader'
-import { SearchBar } from '@/features/catalog/ui/SearchBar'
-import { CategoryTabs } from '@/features/catalog/ui/CategoryTabs'
-import { ProductList } from '@/features/catalog/ui/ProductList'
-import { Footer } from '@/components/layout/Footer/Footer'
+import { Container } from '@/components/ui'
+import { Footer } from '@/components/layout'
+import {
+  CATALOG,
+  CATEGORIES,
+  type CatalogCategory,
+  filterByCategoryAndQuery,
+  onlyActive,
+  sortByOrder,
+} from '@/features/catalog'
+import { CatalogHeader } from '../CatalogHeader'
+import { SearchBar } from '../SearchBar'
+import { CategoryTabs } from '../CategoryTabs'
+import { ProductList } from '../ProductList'
 
 export function CatalogPage() {
   const [query, setQuery] = useState('')
