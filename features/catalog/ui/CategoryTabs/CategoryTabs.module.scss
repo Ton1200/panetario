@@ -5,7 +5,8 @@
   position: sticky;
   top: 10px;
   z-index: 10;
-
+  overflow-x: auto;
+  
   @include glass(rgba(17, 19, 24, 0.55));
   border: 1px solid $border-soft;
   border-radius: $r-lg;
