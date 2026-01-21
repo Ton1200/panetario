@@ -1,0 +1,25 @@
+@use './tokens' as *;
+
+@mixin container {
+  width: 100%;
+  max-width: $container;
+  margin: 0 auto;
+  padding: 0 $space-4;
+}
+
+@mixin glass($bgColor: rgba(17, 19, 24, 0.78)) {
+  background: $bgColor;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@mixin focusRing($color: rgba(184, 158, 107, 0.28)) {
+  outline: none;
+  box-shadow: 0 0 0 4px $color;
+}
+
+@mixin truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

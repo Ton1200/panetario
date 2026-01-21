@@ -1,0 +1,24 @@
+@use '../../../../styles/tokens' as *;
+@use '../../../../styles/mixins' as *;
+
+.wrap {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: $r-lg;
+  border: 1px solid $border;
+  background: rgba(17, 19, 24, 0.72);
+  color: $text;
+  font-size: 14px;
+
+  &::placeholder {
+    color: $text-soft;
+  }
+
+  &:focus {
+    @include focusRing(rgba(184, 158, 107, 0.22));
+  }
+}
