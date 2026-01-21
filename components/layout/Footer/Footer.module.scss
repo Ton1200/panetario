@@ -1,0 +1,125 @@
+@use '../../../styles/tokens' as *;
+
+.footer {
+  padding: 18px 0 28px;
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  width: 100%;
+  max-width: 860px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: $text-muted;
+  font-size: 12px;
+
+  @media (max-width: 380px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0;
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand {
+  color: rgba(255, 255, 255, 0.86);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: $brand;
+  box-shadow: 0 0 0 4px rgba(184, 158, 107, 0.12);
+  flex: 0 0 auto;
+}
+
+.handle {
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184, 158, 107, 0.35);
+  min-width: 0;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.92);
+    border-bottom-color: rgba(184, 158, 107, 0.6);
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 13px;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.actionBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.45),
+    0 0 0 4px rgba(255, 255, 255, 0.07);
+  background: rgba(18, 20, 25, 0.62);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 14px 38px rgba(0, 0, 0, 0.5),
+      0 0 0 4px rgba(255, 255, 255, 0.09);
+  }
+
+  &:active {
+    transform: translateY(0px) scale(0.98);
+  }
+
+  @media (min-width: 1024px) {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+
+  @media (min-width: 1024px) {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.ig {
+  background: radial-gradient(140% 140% at 20% 10%, rgba(168, 75, 60, 0.55), rgba(18, 20, 25, 0.55));
+}
+
+.wpp {
+  background: radial-gradient(140% 140% at 20% 10%, rgba(184, 158, 107, 0.40), rgba(18, 20, 25, 0.58));
+}

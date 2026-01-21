@@ -1,0 +1,76 @@
+@use '../../../../styles/tokens' as *;
+@use '../../../../styles/mixins' as *;
+
+.sticky {
+  position: sticky;
+  top: 10px;
+  z-index: 10;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @include glass(rgba(17, 19, 24, 0.55));
+  border: 1px solid $border-soft;
+  border-radius: $r-lg;
+}
+
+.scroller {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px;
+  -webkit-overflow-scrolling: touch;
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(184, 158, 107, 0.55) transparent;
+
+  /* WebKit */
+  &::-webkit-scrollbar {
+    height: 8px;
+
+    &-track {
+      background: transparent;
+    }
+
+    &-thumb {
+      background: rgba(184, 158, 107, 0.45);
+      border-radius: 9999px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+
+      &:hover {
+        background: rgba(184, 158, 107, 0.65);
+        background-clip: padding-box;
+      }
+    }
+  }
+}
+
+.tab {
+  border-radius: 9999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid $border-soft;
+  background: rgba(20, 24, 33, 0.6);
+  color: $text-muted;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(20, 24, 33, 0.8);
+  }
+
+  &Active {
+    @extend .tab;
+    font-weight: 800;
+    border: 1px solid rgba(184, 158, 107, 0.38);
+    background: rgba(184, 158, 107, 0.18);
+    color: rgba(255, 255, 255, 0.92);
+
+    &:hover {
+      background: rgba(184, 158, 107, 0.22);
+    }
+  }
+}
