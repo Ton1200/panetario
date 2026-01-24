@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.scss'
-import { ThemeProvider } from './providers'
+import { ThemeProvider } from '@/lib/providers'
 
 export const metadata: Metadata = {
   title: 'El Panetario | Catálogo',
@@ -23,11 +23,8 @@ const themeInitScript = `
       return
     }
 
-    var prefersDark =
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-
-    document.documentElement.dataset.theme = prefersDark ? 'dark' : 'light'
+    // Default: light theme
+    document.documentElement.dataset.theme = 'light'
   } catch (e) {}
 })()
 `
