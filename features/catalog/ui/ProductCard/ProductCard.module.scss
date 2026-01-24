@@ -7,9 +7,12 @@
   gap: 12px;
   padding: 12px;
   border-radius: $r-lg;
-  background: rgba(20, 24, 33, 0.68);
-  border: 1px solid $border-soft;
+
+  /* ✅ light surface */
+  background: $card;
+  border: 1px solid $border;
   box-shadow: $shadow-soft;
+
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
@@ -23,8 +26,10 @@
   height: 56px;
   border-radius: $r-md;
   overflow: hidden;
+
   border: 1px solid $border-soft;
-  background: rgba(255, 255, 255, 0.04);
+  background: $card-2;
+
   flex: 0 0 auto;
 
   &Img {
@@ -46,6 +51,7 @@
   font-size: 14px;
   font-weight: 800;
   letter-spacing: -0.01em;
+  color: $text;
   @include truncate;
 }
 
@@ -66,7 +72,9 @@
   margin: 0;
   font-size: 14px;
   font-weight: 900;
-  color: rgba(255, 255, 255, 0.94);
+
+  /* ✅ no más blanco hardcodeado */
+  color: $text;
 }
 
 .currency {

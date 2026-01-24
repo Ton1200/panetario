@@ -1,0 +1,50 @@
+@use '../../../styles/tokens' as *;
+
+.switch {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.track {
+  width: 52px;
+  height: 32px;
+  border-radius: 9999px;
+
+  background: $card-2;
+  border: 1px solid $border;
+  box-shadow: $shadow-soft;
+
+  display: flex;
+  align-items: center;
+  padding: 3px;
+
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+
+  background: $card;
+  border: 1px solid $border-soft;
+
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.10);
+
+  transform: translateX(0);
+  transition: transform 0.22s ease, background 0.2s ease;
+}
+
+/* When dark theme is active, move thumb to the right */
+:global(html[data-theme='dark']) .thumb {
+  transform: translateX(20px);
+}
+
+/* Dark theme track feels a bit “lit” */
+:global(html[data-theme='dark']) .track {
+  background: rgba(184, 158, 107, 0.14);
+  border-color: $border;
+}

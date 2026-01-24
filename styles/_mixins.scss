@@ -7,13 +7,29 @@
   padding: 0 $space-4;
 }
 
-@mixin glass($bgColor: rgba(17, 19, 24, 0.78)) {
+/**
+ * Glass surface (theme-aware)
+ * - Background is a token (changes in light/dark)
+ * - Border + shadow also come from tokens by default
+ */
+@mixin glass(
+  $bgColor: $surface-glass,
+  $blur: 10px,
+  $borderColor: $border-soft,
+  $shadowValue: $shadow-soft
+) {
   background: $bgColor;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $borderColor;
+  box-shadow: $shadowValue;
 }
 
-@mixin focusRing($color: rgba(184, 158, 107, 0.28)) {
+/**
+ * Focus ring (theme-aware)
+ * - Uses token default so it adapts to light/dark
+ */
+@mixin focusRing($color: $focus-ring) {
   outline: none;
   box-shadow: 0 0 0 4px $color;
 }
