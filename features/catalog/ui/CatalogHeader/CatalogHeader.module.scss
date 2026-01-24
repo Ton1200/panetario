@@ -17,9 +17,11 @@
   height: 54px;
   border-radius: 9999px;
   overflow: hidden;
+
   border: 1px solid $border;
-  background: rgba(184, 158, 107, 0.12);
+  background: rgba(184, 158, 107, 0.14);
   box-shadow: $shadow-soft;
+
   flex: 0 0 auto;
 }
 
@@ -40,6 +42,7 @@
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
+  color: $text;
 }
 
 .subtitle {
@@ -60,13 +63,38 @@
   color: $text-muted;
   padding: 6px 10px;
   border-radius: 9999px;
+
   border: 1px solid $border-soft;
-  background: rgba(17, 19, 24, 0.45);
-  
+  background: $card;
+
   &Accent {
     @extend .pill;
-    color: rgba(255, 255, 255, 0.92);
+
+    /* ✅ en light no usamos texto blanco */
+    color: $text;
+
     border: 1px solid rgba(168, 75, 60, 0.35);
-    background: rgba(168, 75, 60, 0.18);
+    background: rgba(168, 75, 60, 0.12);
+  }
+}
+
+/* Desktop: header más grande, sin tocar mobile */
+@media (min-width: 1024px) {
+  .logoWrap {
+    width: 64px;
+    height: 64px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .pill {
+    font-size: 12px;
+    padding: 7px 12px;
   }
 }

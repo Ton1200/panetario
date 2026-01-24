@@ -8,8 +8,8 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 
-  @include glass(rgba(17, 19, 24, 0.55));
-  border: 1px solid $border-soft;
+  /* ✅ light glass */
+  @include glass(rgba(255, 255, 255, 0.72));
   border-radius: $r-lg;
 }
 
@@ -33,13 +33,13 @@
     }
 
     &-thumb {
-      background: rgba(184, 158, 107, 0.45);
+      background: rgba(184, 158, 107, 0.35);
       border-radius: 9999px;
       border: 2px solid transparent;
       background-clip: padding-box;
 
       &:hover {
-        background: rgba(184, 158, 107, 0.65);
+        background: rgba(184, 158, 107, 0.5);
         background-clip: padding-box;
       }
     }
@@ -51,23 +51,29 @@
   padding: 8px 12px;
   font-size: 12px;
   font-weight: 700;
+
   border: 1px solid $border-soft;
-  background: rgba(20, 24, 33, 0.6);
+  background: $card;
   color: $text-muted;
+
   white-space: nowrap;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
-    background: rgba(20, 24, 33, 0.8);
+    background: $card-2;
+    transform: translateY(-1px);
   }
 
   &Active {
     @extend .tab;
+
     font-weight: 800;
-    border: 1px solid rgba(184, 158, 107, 0.38);
+    border: 1px solid rgba(184, 158, 107, 0.5);
     background: rgba(184, 158, 107, 0.18);
-    color: rgba(255, 255, 255, 0.92);
+    color: $text;
+
+    box-shadow: 0 8px 18px rgba(184, 158, 107, 0.14);
 
     &:hover {
       background: rgba(184, 158, 107, 0.22);
