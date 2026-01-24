@@ -1,49 +1,49 @@
-/* Brand tokens - El Panetario (light + warm) */
+/* Brand tokens - El Panetario (theme-driven via CSS variables) */
 
-/* Backgrounds */
-$bg: #f7f3ec;          // crema trigo (fondo principal)
-$bg-elevated: #efe7da; // fondo elevado / secciones
+/* Colors */
+$bg: var(--bg);
+$bg-elevated: var(--bg-elevated);
 
-/* Surfaces (cards) */
-$card: #ffffff;        // card principal
-$card-2: #fbf7f0;      // card secundaria / variación sutil
+$card: var(--card);
+$card-2: var(--card-2);
 
-/* Text */
-$text: rgba(43, 43, 43, 0.92);        // #2B2B2B
-$text-muted: rgba(43, 43, 43, 0.68);
-$text-soft: rgba(43, 43, 43, 0.5);
+$text: var(--text);
+$text-muted: var(--text-muted);
+$text-soft: var(--text-soft);
 
-/* Brand */
-$brand: #b89e6b;   // beige logo (se mantiene)
-$accent: #a84b3c;  // terracota (se mantiene)
-$accent-2: #c77a5f;
+$brand: var(--brand);
+$accent: var(--accent);
+$accent-2: var(--accent-2);
 
-/* Borders */
-$border: rgba(0, 0, 0, 0.08);
-$border-soft: rgba(0, 0, 0, 0.06);
+$border: var(--border);
+$border-soft: var(--border-soft);
 
-/* Shadows (más suaves para light UI) */
-$shadow: 0 14px 45px rgba(0, 0, 0, 0.10);
-$shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.07);
+$shadow: var(--shadow);
+$shadow-soft: var(--shadow-soft);
 
-/* Radius */
-$r-xs: 10px;
-$r-sm: 12px;
-$r-md: 16px;
-$r-lg: 20px;
+/* Radii */
+$r-xs: var(--r-xs);
+$r-sm: var(--r-sm);
+$r-md: var(--r-md);
+$r-lg: var(--r-lg);
 
 /* Layout */
-$container: 860px;
+$container: var(--container);
 
 /* Spacing */
-$space-1: 6px;
-$space-2: 10px;
-$space-3: 12px;
-$space-4: 16px;
-$space-5: 20px;
-$space-6: 28px;
+$space-1: var(--space-1);
+$space-2: var(--space-2);
+$space-3: var(--space-3);
+$space-4: var(--space-4);
+$space-5: var(--space-5);
+$space-6: var(--space-6);
 
 /* Typography */
-$font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Apple Color Emoji',
-  'Segoe UI Emoji';
+$font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
 $font-display: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+
+$glass: var(--glass);
+$glass-strong: var(--glass-strong);
+
+$scroll-thumb: var(--scroll-thumb);
+$scroll-thumb-hover: var(--scroll-thumb-hover);

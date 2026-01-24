@@ -12,6 +12,18 @@
   gap: $space-4;
 }
 
+.brandRowLeft {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  min-width: 0;
+}
+
+.brandRowRight {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
 .logoWrap {
   width: 54px;
   height: 54px;

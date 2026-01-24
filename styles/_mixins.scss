@@ -8,12 +8,12 @@
 }
 
 /**
- * Glass surface (light + warm)
- * - Default bgColor is a warm translucent surface
- * - Adds subtle border + shadow so it reads well in light UI
+ * Glass surface (theme-aware)
+ * - Background is a token (changes in light/dark)
+ * - Border + shadow also come from tokens by default
  */
 @mixin glass(
-  $bgColor: rgba(255, 255, 255, 0.72),
+  $bgColor: $surface-glass,
   $blur: 10px,
   $borderColor: $border-soft,
   $shadowValue: $shadow-soft
@@ -26,10 +26,10 @@
 }
 
 /**
- * Focus ring tuned for light backgrounds
- * - Uses brand tone, slightly stronger opacity for readability
+ * Focus ring (theme-aware)
+ * - Uses token default so it adapts to light/dark
  */
-@mixin focusRing($color: rgba(184, 158, 107, 0.38)) {
+@mixin focusRing($color: $focus-ring) {
   outline: none;
   box-shadow: 0 0 0 4px $color;
 }

@@ -8,8 +8,9 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 
-  /* ✅ light glass */
-  @include glass(rgba(255, 255, 255, 0.72));
+  /* importante: el sticky wrapper NO necesita overflow */
+  @include glass($glass);
+  border: 1px solid $border-soft;
   border-radius: $r-lg;
 }
 
@@ -22,7 +23,7 @@
 
   /* Firefox */
   scrollbar-width: thin;
-  scrollbar-color: rgba(184, 158, 107, 0.55) transparent;
+  scrollbar-color: $scroll-thumb transparent;
 
   /* WebKit */
   &::-webkit-scrollbar {
@@ -33,13 +34,13 @@
     }
 
     &-thumb {
-      background: rgba(184, 158, 107, 0.35);
+      background: $scroll-thumb;
       border-radius: 9999px;
       border: 2px solid transparent;
       background-clip: padding-box;
 
       &:hover {
-        background: rgba(184, 158, 107, 0.5);
+        background: $scroll-thumb-hover;
         background-clip: padding-box;
       }
     }
@@ -72,7 +73,6 @@
     border: 1px solid rgba(184, 158, 107, 0.5);
     background: rgba(184, 158, 107, 0.18);
     color: $text;
-
     box-shadow: 0 8px 18px rgba(184, 158, 107, 0.14);
 
     &:hover {
