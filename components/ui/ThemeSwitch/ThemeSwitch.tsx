@@ -1,7 +1,7 @@
 'use client'
 
+import { useTheme } from '@/lib/providers'
 import styles from './ThemeSwitch.module.scss'
-import { useTheme } from '@/app/providers'
 
 export default function ThemeSwitch() {
   const { theme, toggle } = useTheme()
