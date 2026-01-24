@@ -52,6 +52,9 @@
 
   --scroll-thumb: rgba(184, 158, 107, 0.35);
   --scroll-thumb-hover: rgba(184, 158, 107, 0.50);
+
+  /* Ring estilo historia (light) */
+  --story-ring: #a84b3c;
 }
 
 /* Dark theme (your original palette) */
@@ -81,4 +84,7 @@
 
   --scroll-thumb: rgba(184, 158, 107, 0.45);
   --scroll-thumb-hover: rgba(184, 158, 107, 0.65);
+
+  /* Ring estilo historia (dark, un poco más luminoso) */
+  --story-ring: #c77a5f;
 }
