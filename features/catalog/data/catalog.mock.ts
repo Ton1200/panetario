@@ -1,6 +1,7 @@
 import type { CatalogCategory, CatalogItem } from '@/features/catalog/model/catalog.types'
 
 export const CATEGORIES: CatalogCategory[] = [
+  'Todo',
   'Panadería & Bollería',
   'Panificados salados',
   'Criollos',

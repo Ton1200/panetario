@@ -10,7 +10,7 @@ import {
   type CatalogCategory,
   filterByCategoryAndQuery,
   onlyActive,
-  sortByOrder,
+  sortAlphabetically,
 } from '@/features/catalog'
 import { CatalogHeader } from '../CatalogHeader'
 import { SearchBar } from '../SearchBar'
@@ -21,7 +21,7 @@ export function CatalogPage() {
   const [query, setQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState<CatalogCategory>(CATEGORIES[0])
 
-  const activeItems = useMemo(() => sortByOrder(onlyActive(CATALOG)), [])
+  const activeItems = useMemo(() => sortAlphabetically(onlyActive(CATALOG)), [])
   const filtered = useMemo(
     () => filterByCategoryAndQuery(activeItems, activeCategory, query),
     [activeItems, activeCategory, query]
