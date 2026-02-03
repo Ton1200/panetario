@@ -5,6 +5,7 @@ export { SearchBar } from './ui/SearchBar'
 export { CategoryTabs } from './ui/CategoryTabs'
 export { ProductList } from './ui/ProductList'
 export { ProductCard } from './ui/ProductCard'
+export { ProductDetail } from './ui/ProductDetail'
 
 // Model
 export * from './model/catalog.types'
