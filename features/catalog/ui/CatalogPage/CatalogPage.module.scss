@@ -2,16 +2,34 @@
 @use '../../../../styles/mixins' as *;
 
 .page {
+  position: relative;
   min-height: 100dvh;
-
-  background:
-    radial-gradient(1200px 520px at 50% -10%, rgba(168, 75, 60, 0.18), transparent 60%),
-    radial-gradient(980px 520px at 15% 18%, rgba(184, 158, 107, 0.22), transparent 58%),
-    radial-gradient(900px 520px at 85% 22%, rgba(0, 0, 0, 0.06), transparent 55%),
-    $bg;
-
   padding: $space-6 0 40px;
   padding-bottom: 0px;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    
+    background:
+      radial-gradient(1200px 520px at 50% -10%, rgba(168, 75, 60, 0.12), transparent 65%),
+      radial-gradient(980px 520px at 15% 18%, rgba(184, 158, 107, 0.15), transparent 62%),
+      radial-gradient(900px 520px at 85% 22%, rgba(139, 98, 66, 0.10), transparent 58%),
+      $bg;
+    
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .controls {
