@@ -1,6 +1,7 @@
 import type { Currency } from '@/types'
 
 export type CatalogCategory =
+  | 'Todo'
   | 'Panadería & Bollería'
   | 'Panificados salados'
   | 'Criollos'
