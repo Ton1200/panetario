@@ -29,7 +29,7 @@
  * Focus ring (theme-aware)
  * - Uses token default so it adapts to light/dark
  */
-@mixin focusRing($color: $focus-ring) {
+@mixin focusRing($color: $accent) {
   outline: none;
   box-shadow: 0 0 0 4px $color;
 }
