@@ -6,15 +6,29 @@ import { formatArs } from '@/lib/money'
 
 type Props = {
   item: CatalogItem
+  onClick?: () => void
 }
 
-export function ProductCard({ item }: Props) {
+export function ProductCard({ item, onClick }: Props) {
   const [imgSrc, setImgSrc] = useState(
     `/products/plp/${item.id}/1.png`
   )
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault()
+      onClick()
+    }
+  }
+
   return (
-    <article className={styles.card}>
+    <article 
+      className={styles.card}
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+    >
       <div className={styles.thumb}>
         <Image
           src={imgSrc}
