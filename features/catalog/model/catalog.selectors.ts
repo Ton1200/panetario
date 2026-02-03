@@ -18,3 +18,4 @@ export const filterByCategoryAndQuery = (
     return matchesCategory && matchesQuery
   })
 }
+ 
