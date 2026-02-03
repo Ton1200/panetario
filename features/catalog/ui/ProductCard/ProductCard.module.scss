@@ -31,6 +31,7 @@
 }
 
 .thumb {
+  position: relative;
   width: 56px;
   height: 56px;
   border-radius: $r-md;
@@ -45,7 +46,14 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: opacity 0.3s ease;
   }
+}
+
+.skeletonWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 .info {
