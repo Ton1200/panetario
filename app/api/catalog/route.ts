@@ -24,79 +24,95 @@ const toNumber = (value: unknown) => {
 }
 
 export async function GET() {
-  const sheetId = process.env.GOOGLE_SHEETS_ID
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
-  const privateKeyRaw = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
+  try {
+    const sheetId = process.env.GOOGLE_SHEETS_ID
+    const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
+    const privateKeyRaw = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
 
-  if (!sheetId || !email || !privateKeyRaw) {
+    if (!sheetId || !email || !privateKeyRaw) {
+      return NextResponse.json(
+        {
+          error: 'Missing Google Sheets env vars',
+          env: {
+            GOOGLE_SHEETS_ID: Boolean(sheetId),
+            GOOGLE_SERVICE_ACCOUNT_EMAIL: Boolean(email),
+            GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY: Boolean(privateKeyRaw),
+          },
+        },
+        { status: 500 }
+      )
+    }
+
+    const privateKey = privateKeyRaw.replace(/\\n/g, '\n')
+
+    const auth = new google.auth.JWT({
+      email,
+      key: privateKey,
+      scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+    })
+
+    const sheets = google.sheets({ version: 'v4', auth })
+
+    const range = 'Products!A1:H'
+    const res = await sheets.spreadsheets.values.get({
+      spreadsheetId: sheetId,
+      range,
+    })
+
+    const values = res.data.values ?? []
+    if (values.length < 2) {
+      return NextResponse.json({ categories: ['Todo'], catalog: [] })
+    }
+
+    const headers = values[0].map(h => String(h).trim())
+    const rows = values.slice(1)
+    const idx = (key: string) => headers.findIndex(h => h === key)
+
+    const data: CatalogItem[] = rows
+      .map((r) => {
+        const id = String(r[idx('id')] ?? '').trim()
+        if (!id) return null
+
+        return {
+          id,
+          name: String(r[idx('name')] ?? '').trim(),
+          category: String(r[idx('category')] ?? '').trim(),
+          price: toNumber(r[idx('price')]),
+          currency: String(r[idx('currency')] ?? 'ARS').trim() || 'ARS',
+          unit: String(r[idx('unit')] ?? 'unidad').trim() || 'unidad',
+          active: toBool(r[idx('active')]),
+          order: toNumber(r[idx('order')]),
+        }
+      })
+      .filter(Boolean) as CatalogItem[]
+
+    const catalog = data
+      .filter(p => p.active)
+      .sort((a, b) => {
+        const cat = a.category.localeCompare(b.category)
+        if (cat !== 0) return cat
+        const ord = a.order - b.order
+        if (ord !== 0) return ord
+        return a.name.localeCompare(b.name)
+      })
+
+    const categoriesFromItems = Array.from(new Set(catalog.map(i => i.category)))
+    const categories = ['Todo', ...categoriesFromItems]
+
     return NextResponse.json(
-      { error: 'Missing Google Sheets env vars' },
+      { categories, catalog },
+      { headers: { 'Cache-Control': 'no-store' } }
+    )
+  } catch (err: any) {
+    return NextResponse.json(
+      {
+        error: 'Failed to read Google Sheet',
+        message: err?.message ?? String(err),
+        code: err?.code,
+        status: err?.response?.status,
+        details: err?.response?.data,
+      },
       { status: 500 }
     )
   }
-
-  const privateKey = privateKeyRaw.replace(/\\n/g, '\n')
-
-  const auth = new google.auth.JWT({
-    email,
-    key: privateKey,
-    scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-  })
-
-  const sheets = google.sheets({ version: 'v4', auth })
-
-  const range = 'Products!A1:H'
-  const res = await sheets.spreadsheets.values.get({
-    spreadsheetId: sheetId,
-    range,
-  })
-
-  const values = res.data.values ?? []
-  if (values.length < 2) {
-    return NextResponse.json(
-      { categories: ['Todo'], catalog: [] },
-      { headers: { 'Cache-Control': 'no-store' } }
-    )
-  }
-
-  const headers = values[0].map(h => String(h).trim())
-  const rows = values.slice(1)
-
-  const idx = (key: string) => headers.findIndex(h => h === key)
-
-  const data: CatalogItem[] = rows
-    .map((r) => {
-      const id = String(r[idx('id')] ?? '').trim()
-      if (!id) return null
-
-      return {
-        id,
-        name: String(r[idx('name')] ?? '').trim(),
-        category: String(r[idx('category')] ?? '').trim(),
-        price: toNumber(r[idx('price')]),
-        currency: String(r[idx('currency')] ?? 'ARS').trim() || 'ARS',
-        unit: String(r[idx('unit')] ?? 'unidad').trim() || 'unidad',
-        active: toBool(r[idx('active')]),
-        order: toNumber(r[idx('order')]),
-      }
-    })
-    .filter(Boolean) as CatalogItem[]
-
-  const catalog = data
-    .filter(p => p.active)
-    .sort((a, b) => {
-      const cat = a.category.localeCompare(b.category)
-      if (cat !== 0) return cat
-      const ord = a.order - b.order
-      if (ord !== 0) return ord
-      return a.name.localeCompare(b.name)
-    })
-
-  const categoriesFromItems = Array.from(new Set(catalog.map(i => i.category)))
-  const categories = ['Todo', ...categoriesFromItems]
-
-  return NextResponse.json(
-    { categories, catalog },
-    { headers: { 'Cache-Control': 's-maxage=60, stale-while-revalidate=300' } }
-  )
 }
