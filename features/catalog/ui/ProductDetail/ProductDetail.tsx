@@ -1,10 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import styles from './ProductDetail.module.scss'
 import type { CatalogItem } from '@/features/catalog/model/catalog.types'
 import { formatArs } from '@/lib/money'
+import { Skeleton } from '@/components/ui/Skeleton'
 
 type Props = {
   item: CatalogItem
@@ -12,6 +13,15 @@ type Props = {
 
 export function ProductDetail({ item }: Props) {
   const [imgSrc, setImgSrc] = useState(`/products/plp/${item.id}/1.png`)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Timeout de seguridad
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
+    return () => clearTimeout(timeout)
+  }, [])
 
   return (
     <article className={styles.detail}>
@@ -21,20 +31,28 @@ export function ProductDetail({ item }: Props) {
       </div>
 
       <div className={styles.imageWrapper}>
+        {isLoading && (
+          <div className={styles.skeletonWrapper}>
+            <Skeleton width="100%" height="100%" />
+          </div>
+        )}
         <Image
           src={imgSrc}
-          alt={item.name}
+          alt=""
           width={400}
           height={400}
           className={styles.image}
           priority
+          onLoad={() => setIsLoading(false)}
           onError={() => {
             if (imgSrc.endsWith('.png')) {
               setImgSrc(`/products/plp/${item.id}/1.jpg`)
             } else {
               setImgSrc('/placeholders/pan.png')
             }
+            setIsLoading(false)
           }}
+          style={{ opacity: isLoading ? 0 : 1 }}
         />
       </div>
 

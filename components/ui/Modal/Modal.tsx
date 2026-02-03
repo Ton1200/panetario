@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import styles from './Modal.module.scss'
 
@@ -12,6 +12,11 @@ type Props = {
 
 export function Modal({ isOpen, onClose, children }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const dialog = dialogRef.current
@@ -55,7 +60,7 @@ export function Modal({ isOpen, onClose, children }: Props) {
     }
   }, [onClose])
 
-  if (typeof window === 'undefined') return null
+  if (!mounted) return null
 
   return createPortal(
     <dialog ref={dialogRef} className={styles.modal}>
